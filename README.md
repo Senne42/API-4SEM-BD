@@ -5,25 +5,46 @@ No quarto semestre do curso de banco de dados foi apresentado o desafio de desen
 ## INDICE 
 
 [1 - Introdução](#INTRODUÇÃO)
+
 [2 - Escopo](#ESCOPO)
+
 [3 - Utilização do Sistema](#UTILIZAÇÃO)
+
 [4 - Tecnologias Usadas](#TECNOLOGIAS)
+
 [5 - Contribuição Individual](#CONTRIBUIÇÃO)
+
 [6 - Aprendizado Efetivo](#APRENDIZADO)
 
 
 ## ESCOPO
-Para solucionar o problema do cliente algumas alternativas foram cogitadas usando processo de casos de uso e validações prévias. Após a definição dos valores 
+
+Para solucionar o problema do cliente algumas alternativas foram cogitadas usando processo de casos de uso e validações prévias. Após a definição do escopo do projeto, ficamos com 8 telas principais, sendo elas: tela de login; tela de recuperação de senha; tela de cadastro; tela de eventos; tela de gerenciamento de usuários; tela de fornecedores; tela de relatórios; tela pessoal.
+
+### TELA DE LOGIN
+
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Login.png)
+
+#### TELA DE CADASTRO
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Cadastro.png)
+
+#### TELA DE RECUPERAÇÃO DE SENHA
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Senha.png)
 
 ### TELA DE EVENTOS
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Eventos.png)
 
 ### TELA DE  GERENCIAMENTO USUÁRIOS
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Ger%20Usuer.png)
 
 ### TELA DE FORNECEDORES
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Fornecedores.png)
 
 ### TELA DE RELATÓRIOS  
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Relatorios.png)
 
 ### TELA PESSOAL
+![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Pessoal.png)
 
 ## UTILIZAÇÃO
 
