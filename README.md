@@ -25,26 +25,58 @@ Para solucionar o problema do cliente algumas alternativas foram cogitadas usand
 
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Login.png)
 
+A tela de login é a primeira que o usuário tem acesso quando utiliza o sistema, nela há a possibilidade de fazer o login caso já tenha cadastro, de se cadastrar caso seja o primeiro acesso e recuperação de senha em caso de esquecimento.
+
+<h1></h1>
+
 #### TELA DE CADASTRO
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Cadastro.png)
+
+Na tela de cadastro são solicitadas informações básicas do usuário para que possa ser efetuado o cadastro, após finalizar a primeira senha será enviada para o seu email.
+
+<h1></h1>
 
 #### TELA DE RECUPERAÇÃO DE SENHA
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Senha.png)
 
+Na situação de esquecimento de senha por parte do usuário, a recuperação pode ser feita nessa tela usando seu CPF. A nova sernha será enviada para o email.
+
+<h1></h1>
+
 ### TELA DE EVENTOS
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Eventos.png)
+
+A tela de destaque do sistema é a tela de eventos, onde o administrador poderá gerenciar eventos e seus conflitos, o colaborador pode criar eventos e o convidado pode se cadastrar em eventos futuros.
+
+<h1></h1>
 
 ### TELA DE  GERENCIAMENTO USUÁRIOS
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Ger%20Usuer.png)
 
+A tela de gerenciamento é de uso exclusivo do admin, aqui ele pode gerenciar os tipos de conta, ativar e desativar usuários, cadastrar novo usuário e verificar informações.
+
+<h1></h1>
+
 ### TELA DE FORNECEDORES
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Fornecedores.png)
+
+Na tela de fornecedores o admin pode cadastrar novos fornecedores e gerenciar os que já estão cadastrados.
+
+<h1></h1>
 
 ### TELA DE RELATÓRIOS  
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Relatorios.png)
 
+A tela de relatórios é dividida em três subtelas, sendo elas: relatório de vacina, de colaboradores e eventos. No exemplo acima temos a tela de  relatório de colaboradores, onde o admin poderá ver todas informações relacionadas aos colaboradores. 
+
+<h1></h1>
+
 ### TELA PESSOAL
 ![enter image description here](https://github.com/Senne42/API-4SEM-BD/blob/master/Pessoal.png)
+
+Na tela pessoal o usuário poderá editar suas informações pessoais, fazer upload do seu certificado de vacinação e verificar suas permissões.
+
+<h1></h1>
 
 ## UTILIZAÇÃO
 
