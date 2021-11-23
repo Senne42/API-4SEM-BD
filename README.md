@@ -139,6 +139,346 @@ Junto dos professores e com a participação dos integrantes do grupo, a cada sp
 
 Na área de desenvolvimento de código tive participação marcante no front-end do projeto, desenvolvendo telas, aplicando conceitos de User Experience e acessibilidade. 
 
+#### HEADER
+
+~~~~html
+
+<div *ngIf="user$ | async as user">
+  <div *ngIf="user.firstName">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a
+              [ngClass]="this.router.url === '/eventos' ? 'active' : ''"
+              class="nav-link ml-1"
+              data-toggle="tab"
+              [routerLink]="['eventos']"
+            >
+              <i class="fa fa-coffee"></i>
+              Eventos
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="user.role === 'ROLE_ADMIN'">
+            <a
+              [ngClass]="this.router.url === '/user/management' ? 'active' : ''"
+              class="nav-link ml-1"
+              data-toggle="tab"
+              [routerLink]="['user', 'management']"
+            >
+              <i class="fa fa-users"></i>
+              Usuários
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="user.role === 'ROLE_ADMIN'">
+            <a
+              [ngClass]="this.router.url === '/fornecedores' ? 'active' : ''"
+              class="nav-link ml-1"
+              data-toggle="tab"
+              [routerLink]="['fornecedores']"
+            >
+              <i class="fa fa-users"></i>
+              Fornecedores
+            </a>
+          </li>
+          
+          <li class="nav-item dropdown" *ngIf="user.role !== 'ROLE_GUEST'">
+            <a
+              class="nav-link ml-1 dropdown-toggle"
+              data-toggle="dropdown"
+              [routerLink]=""
+              style="user-select: none"
+            >
+              <i class="fa fa-cogs"></i>
+              Relatórios
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" [routerLink]="['relatorio-eventos']">Eventos</a>
+              <a class="dropdown-item" [routerLink]="['relatorio-vacina']">Vacina</a>
+              <a class="dropdown-item" [routerLink]="['relatorio-colaboradores']">Colaboradores</a>
+            </div>
+          </li>
+
+
+          <li class="nav-item">
+            <a
+              [ngClass]="this.router.url === '/user/profile' ? 'active' : ''"
+              class="nav-link move-right ml-1 mr-3"
+              data-toggle="tab"
+              [routerLink]="['user', 'profile']"
+            >
+              Bem-vindo, {{ user?.firstName }}
+              <i class="fa fa-user"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+~~~~
+
+  
+    
+HTML do header do sistema onde é "montado" o menu de navegação.
+
+<h1></h1>
+
+
+~~~~typescript
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/model/user';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+})
+export class HeaderComponent implements OnInit {
+  public user$ = this.authenticationService.retornaUsuario();
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    public router: Router
+  ) {}
+
+  ngOnInit(): void {}
+}
+
+
+~~~~
+
+ Component.ts onde é feita a parte lógica do header.
+
+<h1></h1>
+
+~~~css
+.nav-link {
+  color: rgba(255, 255, 255, 0.5) !important;
+  border-right: solid 1px #eee;
+  border-radius: 0;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255) !important;
+}
+
+.nav-link.active {
+  color: rgba(255, 255, 255) !important;
+}
+
+.collapse {
+  background-color: #2563eb;
+  border-radius: 5px;
+}
+
+~~~
+
+ Component.css onde é personalizamos a aparência do header.
+
+<h1></h1>
+
+#### Tela de Relatório de Colaboradores
+
+~~~html
+
+<div class="container">
+
+    <div class="jumbotron">
+        
+        <h1 style="text-align: center;"> Relatório de Colaboradores </h1>
+    
+                <!--  INICIO AUTO COMPLETE USER -->
+            
+            
+            <form class="px-4 py-2">
+              <input
+                type="search"
+                name="usersFilter"
+                [(ngModel)]="filter"
+                class="form-control"
+                id="searchUser"
+                placeholder="Nome ou Email"
+                autofocus="autofocus"
+                (ngModelChange)="filterUsers($event)"
+              />
+            </form>
+            <div id="menuItems" *ngFor="let user of users">
+              <div
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="onAddUser(user)"
+              >
+                {{ user.firstName }} {{ user.lastName }}
+                <small id="userHelp" class="form-text text-muted my-0">{{
+                  user.email
+                }}</small>
+              </div>
+            </div>
+            <div
+              id="empty"
+              class="dropdown-header"
+              *ngIf="!users.length && filter.length"
+            >
+              Nenhum usuário encontrado
+            </div>
+            <div
+              id="empty2"
+              class="dropdown-header"
+              *ngIf="!users.length && !filter.length"
+            >
+              Digite um termo de pesquisa
+            </div>
+          
+
+            <!--  FIM AUTO COMPLETE USER -->
+
+            <button class="btn btn-primary float-right" type="submit">Gerar Relatório</button>
+
+
+        
+    </div>
+    
+    <div class="jumbotron" >
+        <!-- AQUI É FEITA A EXIBIÇÃO DO PDC. [src] recebe a variavel "doc"  do component -->
+        <!-- <pdf-viewer [src]="doc" [render-text]="true" style="display: block;"> 
+        </pdf-viewer>
+    
+        <a [href]="doc"> TESTE DE DOWNLOAD</a> -->
+    
+    </div>
+    
+    
+    
+    </div>
+
+~~~
+
+Estrutura da pagina de relatório
+
+<h1></h1>
+
+~~~typescript
+
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/service/user.service';
+
+
+@Component({
+  selector: 'app-relatorio-colaboradores',
+  templateUrl: './relatorio-colaboradores.component.html',
+  styleUrls: ['./relatorio-colaboradores.component.css']
+})
+export class RelatoriColaboradoresComponent implements OnInit {
+
+  filter: string = '';
+  users: User[] = [];
+  unfilteredUsers: User[] = [];
+  invitedUsers: User[] = [];
+  deletedUsers: User[] = [];
+  addedUsers: User[] = [];
+
+  constructor(
+    private userService: UserService,
+  ) { }
+
+  filterUsers(filter): void {
+    if (!filter.length) {
+      this.users = [];
+
+      return;
+    }
+
+    this.users = this.unfilteredUsers.filter((unfilteredUser) => {
+      if (
+        `${unfilteredUser.firstName} ${unfilteredUser.lastName}`.includes(
+          filter
+        ) ||
+        unfilteredUser.email.includes(filter)
+      ) {
+        if (this.invitedUsers.find((user) => user.id === unfilteredUser.id)) {
+          return false;
+        }
+
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  onAddUser(addedUser: User): void {
+    // If addedUser exists in the deletedUsers, remove it from the deletedUsers array. If it doesn't, add it to the addedUsers array and invitedUsers array
+    if (this.deletedUsers.find((user) => user.id === addedUser.id)) {
+      this.deletedUsers = this.deletedUsers.filter(
+        (user) => user.id !== addedUser.id
+      ); // Remove from deletedUsers
+    } else {
+      this.addedUsers.push(addedUser); // Add to addedUsers
+    }
+
+    this.invitedUsers.push(addedUser); // Add to invitedUsers
+
+    this.filterUsers(this.filter);
+  }
+
+  fetchUsers() {
+    this.userService.fetchAllUsers().subscribe((users: User[]) => {
+      this.unfilteredUsers = users;
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+}
+
+
+~~~
+Parte lógica da pesquisa de colaboradores
+
+<h1></h1>
+
+~~~css
+
+.jumbotron 
+{
+    margin-top: 2em;
+    padding-top: 1em;
+    background-color: #dbeafea6;
+}
+
+.btn
+{
+    margin-top: 1em;
+}
+
+~~~
+
+Personalização de cores e aspectos.
+
+<h1></h1>
+
+
 ## APRENDIZADO
 
 Com a metodologia ágil e integração de matérias pude desenvolver minhas habilidades em sua essência, com a imersão em um ambiente que se aproxima muito de como será no real mercado de trabalho. 
